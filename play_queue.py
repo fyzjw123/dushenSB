@@ -8,14 +8,13 @@ class PlayQueue:
 		music = Node(url, by_user)
 		if head == None:
 			head = music
-			insert_pos = music
 			music.before = music
 			music.next = music
+			insert_pos = music
 		else:
 			if music.by_user:
-				if insert_pos==head:
-					head=music
 				__insert_music(music, insert_pos)
+				insert_pos = music
 			else:
 				tail=head.before
 				__insert_music(music, tail)
@@ -23,6 +22,10 @@ class PlayQueue:
 
 	@staticmethod
 	def __insert_music(music, pos):
+		if pos==None:
+			music.next=head
+			music.before=head.before
+			head=music
 		music.next=pos.next
 		music.before=pos
 		music.next.before=music
@@ -31,6 +34,7 @@ class PlayQueue:
 	'''
 	point to next music
 	remove the music if it is added by the user and can only play once
+	!!!update insert_pos
 	'''
 	@staticmethod
 	def get_music():

@@ -31,6 +31,7 @@ class Radio:
 			stdin=p1.stdout, 
 			stdout=subprocess.PIPE)
 		p1.wait()
+		p2.wait()
 
 	def add_music(self, url, by_user):
 		self.play_queue.insert_music(url, by_user)

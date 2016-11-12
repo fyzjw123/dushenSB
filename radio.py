@@ -1,32 +1,36 @@
+import threading
+import time
 import subprocess
 from play_queue import PlayQueue
 class Radio:
-	@staticmethod
-	def start_play():
-		PlayQueue.insert_music();
-		PlayQueue.insert_music();
-		PlayQueue.insert_music();
-		PlayQueue.insert_music();
-		while(true){
-			music = PlayQueue.get_head_music()
-			__play_music(music)
-		}
 
-	@staticmethod
-	def __play_music(url):
-		p1 = subprocess.Popen(
-			"sudo sox -t mp3 %s -t wav -" % url, 
+	def __init__(self):
+		self.play_queue=PlayQueue()
+		self.play_queue.insert_music("music/黄祖波 - 平凡之路 - 铃声版.mp3", False);
+		self.play_queue.insert_music("music/金南玲 - 逆流成河 - 铃声版.mp3", False);
+		self.play_queue.insert_music("music/田馥甄 - 小幸运 - 铃声版.mp3", False);
+		self.play_queue.insert_music("music/庄心妍 - 走着走着就散了 - 铃声版.mp3", False);
+		threading.Thread(target = self.__start_play, name = "Radio.__start_play").start()
+
+	def __start_play(self):
+		while True:
+			music = self.play_queue.get_music()
+			print(music)
+			self.__play_music(music)
+
+	def __play_music(self, url):
+		p1 = subprocess.Popen("sudo sox -t mp3 %s -t wav -" % url, 
 			shell=True, 
-			stdout=subprocess.PIPE
-		)
-        p2 = subprocess.Popen(
-            "sudo pi_fm_rds -freq 80.0 -audio -",
-            shell=True,
-            stdin=self.p1.stdout,
-            stdout=subprocess.PIPE
-        )
-        p1.wait()
+			stdout=subprocess.PIPE)
+		p2 = subprocess.Popen("sudo pi_fm_rds -freq 80.0 -audio -", 
+			shell=True, 
+			stdin=p1.stdout, 
+			stdout=subprocess.PIPE)
+		p1.wait()
 
-	@staticmethod
-	def add_music(url):
-		PlayQueue.insert_music(url);
+	def add_music(self, url, by_user):
+		self.play_queue.insert_music(url, by_user)
+
+if __name__ == "__main__":
+	radio = Radio()
+	radio.add_music("www.djfe.com/jd.mp3", True)

@@ -10,10 +10,10 @@ class Radio:
 
 	def __init__(self):
 		self.play_queue=PlayQueue()
-		self.play_queue.insert_music("%s/黄祖波 - 平凡之路 - 铃声版.mp3" % MUSIC_DIR, False);
-		self.play_queue.insert_music("%s/金南玲 - 逆流成河 - 铃声版.mp3" % MUSIC_DIR, False);
-		self.play_queue.insert_music("%s/田馥甄 - 小幸运 - 铃声版.mp3" % MUSIC_DIR, False);
-		self.play_queue.insert_music("%s/庄心妍 - 走着走着就散了 - 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/黄祖波\ -\ 平凡之路\ -\ 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/金南玲\ -\ 逆流成河\ -\ 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/田馥甄\ -\ 小幸运\ -\ 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/庄心妍\ -\ 走着走着就散了\ -\ 铃声版.mp3" % MUSIC_DIR, False);
 		threading.Thread(target = self.__start_play, name = "Radio.__start_play").start()
 
 	def __start_play(self):

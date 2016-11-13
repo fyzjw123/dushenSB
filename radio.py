@@ -1,15 +1,19 @@
+#coding:utf-8
 import threading
 import time
 import subprocess
 from play_queue import PlayQueue
+
+MUSIC_DIR = "/home/pi/KeChuang/dushenSB/music"
+
 class Radio:
 
 	def __init__(self):
 		self.play_queue=PlayQueue()
-		self.play_queue.insert_music("music/黄祖波 - 平凡之路 - 铃声版.mp3", False);
-		self.play_queue.insert_music("music/金南玲 - 逆流成河 - 铃声版.mp3", False);
-		self.play_queue.insert_music("music/田馥甄 - 小幸运 - 铃声版.mp3", False);
-		self.play_queue.insert_music("music/庄心妍 - 走着走着就散了 - 铃声版.mp3", False);
+		self.play_queue.insert_music("%s/黄祖波\ -\ 平凡之路\ -\ 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/金南玲\ -\ 逆流成河\ -\ 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/田馥甄\ -\ 小幸运\ -\ 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/庄心妍\ -\ 走着走着就散了\ -\ 铃声版.mp3" % MUSIC_DIR, False);
 		threading.Thread(target = self.__start_play, name = "Radio.__start_play").start()
 
 	def __start_play(self):
@@ -27,6 +31,7 @@ class Radio:
 			stdin=p1.stdout, 
 			stdout=subprocess.PIPE)
 		p1.wait()
+		p2.wait()
 
 	def add_music(self, url, by_user):
 		self.play_queue.insert_music(url, by_user)

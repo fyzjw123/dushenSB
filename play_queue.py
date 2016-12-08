@@ -55,7 +55,16 @@ class PlayQueue:
 			if music==self.head:
 				self.head = self.head.next
 			music.before.next = music.next
-			music.next.before = music.before 
+			music.next.before = music.before
+
+	def get_music_list(self):
+		pos = self.head
+		music_list = [[pos.url, pos.name]]
+		pos=pos.next
+		while pos!=self.head:
+			music_list.append([pos.url, pos.name])
+			pos = pos.next
+		return music_list
 
 class Node:
 
@@ -81,3 +90,4 @@ if __name__ == "__main__":
 	print(que.get_music())
 	print(que.get_music())
 	print(que.get_music())
+	print(que.get_music_list())

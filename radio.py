@@ -33,9 +33,24 @@ class Radio:
 		p1.wait()
 		p2.wait()
 
+	'''
+	Input:
+		url, music's url
+		name, music's name
+		by_user, true of false
+	'''
 	def add_music(self, url, name, by_user):
 		self.play_queue.insert_music(url, name, by_user)
 
+	'''
+	Output:
+		array of [music_url, music_name]
+	'''
+	def get_music_list(self):
+		return self.play_queue.get_music_list()
+
+
 if __name__ == "__main__":
 	radio = Radio()
+	print(radio.get_music_list())
 	radio.add_music("www.djfe.com/jd.mp3", "hello123", True)

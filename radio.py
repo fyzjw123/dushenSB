@@ -10,10 +10,10 @@ class Radio:
 
 	def __init__(self):
 		self.play_queue=PlayQueue()
-		self.play_queue.insert_music("%s/黄祖波\ -\ 平凡之路\ -\ 铃声版.mp3" % MUSIC_DIR, False);
-		self.play_queue.insert_music("%s/金南玲\ -\ 逆流成河\ -\ 铃声版.mp3" % MUSIC_DIR, False);
-		self.play_queue.insert_music("%s/田馥甄\ -\ 小幸运\ -\ 铃声版.mp3" % MUSIC_DIR, False);
-		self.play_queue.insert_music("%s/庄心妍\ -\ 走着走着就散了\ -\ 铃声版.mp3" % MUSIC_DIR, False);
+		self.play_queue.insert_music("%s/黄祖波\ -\ 平凡之路\ -\ 铃声版.mp3" % MUSIC_DIR, "平凡之路", False);
+		self.play_queue.insert_music("%s/金南玲\ -\ 逆流成河\ -\ 铃声版.mp3" % MUSIC_DIR, "逆流成河", False);
+		self.play_queue.insert_music("%s/田馥甄\ -\ 小幸运\ -\ 铃声版.mp3" % MUSIC_DIR, "小幸运", False);
+		self.play_queue.insert_music("%s/庄心妍\ -\ 走着走着就散了\ -\ 铃声版.mp3" % MUSIC_DIR, "走着走着就散了", False);
 		threading.Thread(target = self.__start_play, name = "Radio.__start_play").start()
 
 	def __start_play(self):
@@ -33,9 +33,9 @@ class Radio:
 		p1.wait()
 		p2.wait()
 
-	def add_music(self, url, by_user):
-		self.play_queue.insert_music(url, by_user)
+	def add_music(self, url, name, by_user):
+		self.play_queue.insert_music(url, name, by_user)
 
 if __name__ == "__main__":
 	radio = Radio()
-	radio.add_music("www.djfe.com/jd.mp3", True)
+	radio.add_music("www.djfe.com/jd.mp3", "hello123", True)

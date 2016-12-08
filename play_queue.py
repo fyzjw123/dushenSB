@@ -4,8 +4,8 @@ class PlayQueue:
 		self.head=None
 		self.insert_pos=None
 
-	def insert_music(self, url, by_user):
-		music = Node(url, by_user)
+	def insert_music(self, url, name, by_user):
+		music = Node(url, name, by_user)
 		if self.head is None:
 			self.head = music
 			music.before = music
@@ -59,21 +59,22 @@ class PlayQueue:
 
 class Node:
 
-	def __init__(self, url, by_user):
+	def __init__(self, url, name, by_user):
 		self.url = url
+		self.name = name
 		self.by_user = by_user
 		self.before = None
 		self.next = None
 
 if __name__ == "__main__":
 	que =PlayQueue()
-	que.insert_music("a",False)
-	que.insert_music("b",False)
-	que.insert_music("c",True)
+	que.insert_music("a","name_a",False)
+	que.insert_music("b","name_b",False)
+	que.insert_music("c","name_c",True)
 	print(que.get_music())
-	que.insert_music("d",False)
+	que.insert_music("d","name_d",False)
 	print(que.get_music())
-	que.insert_music("e",True)
+	que.insert_music("e","name_e",True)
 	print(que.get_music())
 	print(que.get_music())
 	print(que.get_music())

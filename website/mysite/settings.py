@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'raspberry.apps.RaspberryConfig'
+    'raspberry.apps.RaspberryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,8 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'raspberry',
-        'USRE': 'root',
-        'PASSWORD': 'raspberry'
+        'USER': 'root',
+        'PASSWORD': 'qwezjw950820',
+        'HOST': 'localhost'
     }
 }
 

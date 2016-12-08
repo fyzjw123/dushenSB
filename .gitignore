@@ -1,2 +1,4 @@
 poll_system/
 website/raspberry/migrations
+website/mysite/__pycache__/*
+website/raspberry/__pycache__/*

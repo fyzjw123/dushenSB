@@ -1,13 +1,34 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import Http404
+from django.http import HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
 
-def index(request):
-    if request.method == 'POST':
-        return HttpResponse("Post")
+@csrf_exempt
+def get_music(request):
     if request.method == 'GET':
-        return HttpResponse("Get")
+        return HttpResponse("OK: GET")
+    elif request.method == 'PUT':
+        return HttpResponse("OK: PUT")
     else:
-        return HttpResponse("else")
+        return HttpResponseBadRequest("RequestError")
+
+
+def search_music(request):
+    if request.method == 'GET':
+        music_name = request.GET.get("music_name")
+        if music_name is not None:
+            return HttpResponse("OK: GET")
+        else:
+            return Http404("Music Not Find.")
+    else:
+        return HttpResponseBadRequest("RequestError")
+
+
+def get_music_list(request):
+    if request.method == 'GET':
+        return HttpResponse("OK: GET")
+    else:
+        return HttpResponseBadRequest("RequestError")

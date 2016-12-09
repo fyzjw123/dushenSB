@@ -1,0 +1,91 @@
+#lga {
+    height: 231px;
+    margin-top: 30px;
+    text-align: -webkit-center;
+}
+
+img {
+	padding-top: 40px;
+
+    height: 128px;
+    width: 142px;
+}
+
+form {
+    height: 39px;
+    display: block;
+    margin-top: 0em;
+    text-align: center;
+    position: relative;
+}
+
+#fakebox {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 100ms linear, border-color 100ms linear;
+  background-color: #fff;
+  border: 1px solid rgb(185, 185, 185);
+  border-radius: 1px;
+  border-top-color: rgb(160, 160, 160);
+  cursor: text;
+  font-size: 18px;
+  height: 36px;
+  line-height: 36px;
+  max-width: 672px;
+  position: relative;
+  margin: 0 auto;
+  width: 298px;
+}
+
+#fakebox:hover {
+  border: 1px solid rgb(169, 169, 169);
+  border-top-color: rgb(144, 144, 144);
+}
+
+#fake-text {
+    color: #bbb;
+    bottom: 0;
+    font-size: 16px;
+    left: 9px;
+    margin-top: 1px;
+    overflow: hidden;
+    position: absolute;
+    right: 9px;
+    text-align: initial;
+    text-overflow: ellipsis;
+    top: 0;
+    white-space: nowrap;
+}
+
+
+#fakebox > input {
+  bottom: 0;
+  box-sizing: border-box;
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  padding-left: 8px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.search-result {
+	margin: 30px auto;
+}
+
+.song_hidden {
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+
+
+
+.current {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	z-index: 20;
+}

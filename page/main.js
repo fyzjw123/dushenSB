@@ -1,5 +1,6 @@
 $(function() {
 
+    // 搜索框样式与回车搜索事件
     $('#fakebox-input').click(function(event) {
         $(this).css('opacity','1');
     }).blur(function(event) {
@@ -8,13 +9,23 @@ $(function() {
         event.preventDefault();
         if(event.keyCode == 13){
             var music_name = $("input[name^='music_name']").val();
-            request_music(music_name);
+            search_music(music_name);
         }
     });
 
+    $('.song_add a').click(function(event) {
+        event.preventDefault();
+        var type = $(this).parent().siblings('.song_type').text();
+        var link = $(this).parent().siblings('.song_link').text();
+        add_music(type, link);
+    });
+
+    setInterval('update_list()', 5000);
+
 });
 
-function request_music(music_name) {
+// 搜索音乐
+function search_music(music_name) {
 
     $.ajax({
         url: '/search?music_name=%s' + music_name,
@@ -31,13 +42,54 @@ function request_music(music_name) {
                         +'<td class="song_title song_visible">'+music.title+'</td>'
                         +'<td class="song_singer song_visible">'+music.singer+'</td>'
                         +'<td class="song_album song_visible">'+music.album+'</td>'
-                        +'<td>'
+                        +'<td class="song_add">'
                             +'<a href="">添加</a>'
                         +'</td>'
                     +'</tr>'
                 );
-            }
+            });
             $('.search-result').css('display','block');
+        }
+    });
+}
+
+// 添加音乐
+function add_music(type, link) {
+
+    $.ajax({
+        url: '/music',
+        type: 'put',
+        dataType: 'json',
+        data: {
+            "type": type,
+            "link": link
+        },
+        async: false,
+        success: function(state) {
+            alert(state.status);
+        }
+    });
+}
+
+// 更新播放列表
+function update_list(music_name) {
+
+    $.ajax({
+        url: '/music_list',
+        type: 'get',
+        dataType: 'json',
+        async: false,
+        success: function(musics) {
+            $('.left-panel ul').remove();
+            $.each(musics, function(key, music) {
+                $('.left-panel').append(
+                    +'<ul class="playing-item">'
+                        +'<li>'+music.title+'</li>'
+                        +'<li>'+music.singer+'</li>'
+                        +'<li>'+music.album+'</li>'
+                    +'</ul>'
+                );
+            });
         }
     });
 }

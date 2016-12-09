@@ -1,3 +1,44 @@
+
+.left-panel {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #f0f0f0;
+  text-align: center;
+}
+
+.playing-header {
+  margin-top: 20px;
+  font-size: 1em;
+}
+
+ul {
+  margin: 0;
+  padding: 10px 0;
+  background: #d0d0d0;
+  padding-left: 0;
+}
+ul:nth-child(even) {
+  background: #c0c0c0;
+}
+
+li {
+  list-style-type: none;
+}
+li {
+  margin-right: 0;
+}
+
+.right-panel {
+  position: fixed;
+  width: 80%;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+
 #lga {
     height: 231px;
     margin-top: 30px;
@@ -81,11 +122,3 @@ form {
 
 
 
-
-.current {
-	position: fixed;
-	width: 100%;
-	left: 0;
-	bottom: 0;
-	z-index: 20;
-}

@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.http import Http404
 from django.http import HttpResponseBadRequest
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from pycode.core import Core
 
 # Create your views here.
 
@@ -20,7 +22,8 @@ def search_music(request):
     if request.method == 'GET':
         music_name = request.GET.get("music_name")
         if music_name is not None:
-            return HttpResponse("OK: GET")
+            music_list = Core.search_sogou_music(music_name)
+            return JsonResponse(music_list)
         else:
             return Http404("Music Not Find.")
     else:

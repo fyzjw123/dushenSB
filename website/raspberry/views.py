@@ -3,13 +3,13 @@ from django.http import Http404
 from django.http import HttpResponseBadRequest
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from pycode.core import Core
+from .pycode.core import Core
 
 # Create your views here.
 
 
 @csrf_exempt
-def get_music(request):
+def music(request):
     if request.method == 'GET':
         return HttpResponse("OK: GET")
     elif request.method == 'PUT':
@@ -23,7 +23,10 @@ def search_music(request):
         music_name = request.GET.get("music_name")
         if music_name is not None:
             music_list = Core.search_sogou_music(music_name)
-            return JsonResponse(music_list)
+            if music_list is None:
+                return Http404("Music Not Find.")
+            else:
+                return JsonResponse(music_list)
         else:
             return Http404("Music Not Find.")
     else:

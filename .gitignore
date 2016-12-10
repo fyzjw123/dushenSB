@@ -1,3 +1,5 @@
 poll_system/
 website/raspberry/migrations
 music/
+website/mysite/__pycache__/*
+website/raspberry/__pycache__/*

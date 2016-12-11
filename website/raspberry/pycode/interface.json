@@ -13,24 +13,27 @@
 	]	
 }
 
-// get(play) music
-//GET /music
-// local表示本地存储了的音乐，直接把本地路径发过来，sogou表示要从搜狗获取，link为搜狗地址
-{
-	"type":"local(/sogou)",
-	"link":"%s"
-}
-//RETURN 返回播放是否成功
-{
-	"type":"local(/sogou)",
-	"status":"200(/other error code)"
-}
+// // get(play) music
+// //GET /music
+// // local表示本地存储了的音乐，直接把本地路径发过来，sogou表示要从搜狗获取，link为搜狗地址
+// {
+// 	"type":"local(/sogou)",
+// 	"link":"%s"
+// }
+// //RETURN 返回播放是否成功
+// {
+// 	"type":"local(/sogou)",
+// 	"status":"200(/other error code)"
+// }
 
 //add music
 //PUT /music
 {
 	"type":"local(/sogou)",
-	"link":"%s"
+	"title":"%s",
+	"link":"%s",
+	"singer":"%s",
+	"album":"%s"
 }
 //RETURN 返回播放是否成功
 {

@@ -1,11 +1,12 @@
+#coding:utf-8
 class PlayQueue:
 
 	def __init__(self):
 		self.head=None
 		self.insert_pos=None
 
-	def insert_music(self, url, name, by_user):
-		music = Node(url, name, by_user)
+	def insert_music(self, url, info, by_user):
+		music = Node(url, info, by_user)
 		if self.head is None:
 			self.head = music
 			music.before = music
@@ -21,22 +22,24 @@ class PlayQueue:
 				self.__insert_music(music, tail)
 				
 	def __insert_music(self, music, pos):
-		if pos is None:
+		if pos is None: #assume has other music in the queue and insert to the first place
 			music.next=self.head
 			music.before=self.head.before
-			self.head=music
-			return
-		music.next=pos.next
-		music.before=pos
-		music.next.before=music
-		music.before.next=music
+			music.next.before = music
+			music.before.next = music
+			self.head = music
+		else:
+			music.next=pos.next
+			music.before=pos
+			music.next.before=music
+			music.before.next=music
 
 	'''
 	point to next music
 	remove the music if it is added by the user and can only play once
 	!!!update self.insert_pos
 	'''
-	def get_music(self):
+	def get_music_url(self):
 		if self.head is None:	return None
 		url = self.head.url
 		if self.head.by_user:
@@ -59,35 +62,35 @@ class PlayQueue:
 
 	def get_music_list(self):
 		pos = self.head
-		music_list = [[pos.url, pos.name]]
+		music_list = [[pos.url, pos.info, pos.by_user]]
 		pos=pos.next
 		while pos!=self.head:
-			music_list.append([pos.url, pos.name])
+			music_list.append([pos.url, pos.info, pos.by_user])
 			pos = pos.next
 		return music_list
 
 class Node:
 
-	def __init__(self, url, name, by_user):
+	def __init__(self, url, info, by_user):
 		self.url = url
-		self.name = name
+		self.info = info
 		self.by_user = by_user
 		self.before = None
 		self.next = None
 
 if __name__ == "__main__":
 	que =PlayQueue()
-	que.insert_music("a","name_a",False)
-	que.insert_music("b","name_b",False)
-	que.insert_music("c","name_c",True)
-	print(que.get_music())
-	que.insert_music("d","name_d",False)
-	print(que.get_music())
-	que.insert_music("e","name_e",True)
-	print(que.get_music())
-	print(que.get_music())
-	print(que.get_music())
-	print(que.get_music())
-	print(que.get_music())
-	print(que.get_music())
+	MUSIC_DIR = "/home/pi/KeChuang/dushenSB/music"
+	que.insert_music("%s/黄祖波\ -\ 平凡之路\ -\ 铃声版.mp3" % MUSIC_DIR, ["平凡之路", "黄祖波"], False)
+	que.insert_music("%s/金南玲\ -\ 逆流成河\ -\ 铃声版.mp3" % MUSIC_DIR, ["逆流成河", "金南玲"], True)
+	que.insert_music("%s/田馥甄\ -\ 小幸运\ -\ 铃声版.mp3" % MUSIC_DIR, ["小幸运", "田馥甄"], False)
+	print(que.get_music_url())
+	que.insert_music("%s/庄心妍\ -\ 走着走着就散了\ -\ 铃声版.mp3" % MUSIC_DIR, ["走着走着就散了", "庄心妍"], True)
+	print(que.get_music_url())
+	print(que.get_music_url())
+	print(que.get_music_url())
+	print(que.get_music_url())
+	print(que.get_music_url())
+	print(que.get_music_url())
+	print(que.get_music_url())
 	print(que.get_music_list())

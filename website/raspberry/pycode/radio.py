@@ -3,17 +3,30 @@ import threading
 import time
 import subprocess
 from .play_queue import PlayQueue
+import os
 
 MUSIC_DIR = "/home/pi/KeChuang/dushenSB/music"
 
+init_music = [
+	["黄祖波\ -\ 平凡之路\ -\ 铃声版.mp3", "平凡之路", "黄祖波", "后会无期"],
+	["金南玲\ -\ 逆流成河\ -\ 铃声版.mp3", "逆流成河", "金南玲", "来生"],
+	["田馥甄\ -\ 小幸运\ -\ 铃声版.mp3", "小幸运", "田馥甄", "我的少女时代"],
+	["庄心妍\ -\ 走着走着就散了\ -\ 铃声版.mp3", "走着走着就散了", "庄心妍", "走着走着就散了"]
+]
 class Radio:
 
 	def __init__(self):
 		self.play_queue=PlayQueue()
-		self.add_music("%s/黄祖波\ -\ 平凡之路\ -\ 铃声版.mp3" % MUSIC_DIR, ["平凡之路", "黄祖波"], False)
-		self.add_music("%s/金南玲\ -\ 逆流成河\ -\ 铃声版.mp3" % MUSIC_DIR, ["逆流成河", "金南玲"], False)
-		self.add_music("%s/田馥甄\ -\ 小幸运\ -\ 铃声版.mp3" % MUSIC_DIR, ["小幸运", "田馥甄"], False)
-		self.add_music("%s/庄心妍\ -\ 走着走着就散了\ -\ 铃声版.mp3" % MUSIC_DIR, ["走着走着就散了", "庄心妍"], False)
+		for music in init_music:
+			link = os.path.join(MUSIC_DIR, music[0])
+			info = {
+				'type':'local',
+				'title':music[1],
+				'singer':music[2],
+				'album':music[3],
+				'link':link
+			}
+			self.add_music(link, info, False)
 		threading.Thread(target = self.__start_play, name = "Radio.__start_play").start()
 
 	def __start_play(self):

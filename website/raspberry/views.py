@@ -4,6 +4,7 @@ from django.http import HttpResponseBadRequest
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .pycode.core import Core
+import json
 
 # Create your views here.
 
@@ -13,7 +14,18 @@ def music(request):
     if request.method == 'GET':
         return HttpResponse("OK: GET")
     elif request.method == 'PUT':
-        return HttpResponse("OK: PUT")
+        music_json = json.loads(request.body.decode("utf-8"))
+        music_flag = Core.add_music(music_json)
+        if music_flag:
+            info = {}
+            info['type'] = music_json['type']
+            info['status'] = '200'
+            return JsonResponse(info)
+        else:
+            err = {}
+            err['type'] = music_json['type']
+            err['status'] = '500'
+            return JsonResponse(err)
     else:
         return HttpResponseBadRequest("RequestError")
 
@@ -35,6 +47,7 @@ def search_music(request):
 
 def get_music_list(request):
     if request.method == 'GET':
-        return HttpResponse("OK: GET")
+        music_list = Core.get_music_list()
+        return JsonResponse(music_list)
     else:
         return HttpResponseBadRequest("RequestError")

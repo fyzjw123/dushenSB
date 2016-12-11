@@ -30,6 +30,7 @@
 //PUT /music
 {
 	"type":"local(/sogou)",
+	"title":"%s",
 	"link":"%s"
 }
 //RETURN 返回播放是否成功

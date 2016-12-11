@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 from .config import config_json
+from .play_queue import PlayQueue
 import requests
 import re
 
 
 class Core:
     """core class, decorate many static functions"""
+
+    # unique music queue
+    queue = PlayQueue()
+
+    def __init__(self):
+        raise Exception("Cannot Init")
 
     @staticmethod
     def search_sogou_music(name):
@@ -54,3 +61,24 @@ class Core:
 
                 music_list['musics'].append(song)
             return music_list
+
+    @staticmethod
+    def add_music(music):
+        t = music['type']
+        if t == 'sogou':
+            Core.queue.insert_music(url=music['link'], name=music[
+                                    'title'], by_user=True)
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def get_music_list():
+        music_list = Core.queue.get_music_list()
+        music_list_obj = {"musics": []}
+        for music in music_list:
+            music_obj = {}
+            music_obj['title'] = music[1]
+            music_obj['link'] = music[0]
+            music_list_obj['musics'].append(music_obj)
+        return music_list

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .config import config_json
-from .play_queue import PlayQueue
+from .radio import Radio
 import requests
 import re
 
@@ -9,7 +9,7 @@ class Core:
     """core class, decorate many static functions"""
 
     # unique music queue
-    queue = PlayQueue()
+    queue = Radio()
 
     def __init__(self):
         raise Exception("Cannot Init")
@@ -66,8 +66,7 @@ class Core:
     def add_music(music):
         t = music['type']
         if t == 'sogou':
-            Core.queue.insert_music(url=music['link'], name=music[
-                                    'title'], by_user=True)
+            Core.queue.add_music(url=music['link'], by_user=True, info=music)
             return True
         else:
             return False
@@ -78,7 +77,10 @@ class Core:
         music_list_obj = {"musics": []}
         for music in music_list:
             music_obj = {}
-            music_obj['title'] = music[1]
             music_obj['link'] = music[0]
+            music_obj["title"] = music[1]['title']
+            music_obj['type'] = music[1]['type']
+            music_obj['singer'] = music[1]['singer']
+            music_obj['album'] = music[1]['album']
             music_list_obj['musics'].append(music_obj)
         return music_list

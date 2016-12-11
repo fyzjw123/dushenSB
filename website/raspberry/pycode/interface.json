@@ -31,7 +31,9 @@
 {
 	"type":"local(/sogou)",
 	"title":"%s",
-	"link":"%s"
+	"link":"%s",
+	"singer":"%s",
+	"album":"%s"
 }
 //RETURN 返回播放是否成功
 {

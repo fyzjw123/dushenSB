@@ -18,9 +18,8 @@ $(function() {
         var type = $(this).parent().siblings('.song_type').text();
         var link = $(this).parent().siblings('.song_link').text();
         add_music(type, link);
+        update_list();
     });
-
-    setInterval('update_list()', 5000);
 
 });
 

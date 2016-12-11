@@ -2,7 +2,7 @@
 import threading
 import time
 import subprocess
-from play_queue import PlayQueue
+from .play_queue import PlayQueue
 
 MUSIC_DIR = "/home/pi/KeChuang/dushenSB/music"
 

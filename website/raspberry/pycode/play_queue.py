@@ -22,15 +22,17 @@ class PlayQueue:
 				self.__insert_music(music, tail)
 				
 	def __insert_music(self, music, pos):
-		if pos is None:
+		if pos is None: #assume has other music in the queue and insert to the first place
 			music.next=self.head
 			music.before=self.head.before
-			self.head=music
-			return
-		music.next=pos.next
-		music.before=pos
-		music.next.before=music
-		music.before.next=music
+			music.next.before = music
+			music.before.next = music
+			self.head = music
+		else:
+			music.next=pos.next
+			music.before=pos
+			music.next.before=music
+			music.before.next=music
 
 	'''
 	point to next music

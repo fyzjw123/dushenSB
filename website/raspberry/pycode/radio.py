@@ -23,7 +23,7 @@ class Radio:
 			self.__play_music(music)
 
 	def __play_music(self, url):
-		p1 = subprocess.Popen("sudo sox -t mp3 %s -t wav -" % url, 
+		p1 = subprocess.Popen("sudo ffmpeg -i %s -f wav pipe:" % url,
 			shell=True, 
 			stdout=subprocess.PIPE)
 		p2 = subprocess.Popen("sudo pi_fm_rds -freq 80.0 -audio -", 

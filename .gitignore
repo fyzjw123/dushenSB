@@ -2,3 +2,5 @@ poll_system/
 website/raspberry/migrations
 website/mysite/__pycache__/*
 website/raspberry/__pycache__/*
+website/raspberry/pycode/__pycache__/*
+chromedriver

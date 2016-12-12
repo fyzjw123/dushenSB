@@ -1,11 +1,7 @@
 $(function() {
 
-    // 搜索框样式与回车搜索事件
-    $('#fakebox-input').click(function(event) {
-        $(this).css('opacity','1');
-    }).blur(function(event) {
-        $(this).css('opacity','0');
-    }).keydown(function(event){
+    // 回车搜索事件
+    $('#fakebox-input').keydown(function(event){
         event.preventDefault();
         if(event.keyCode == 13){
             var music_name = $("input[name^='music_name']").val();
@@ -13,11 +9,12 @@ $(function() {
         }
     });
 
-    $('.song_add a').click(function(event) {
+    $('.song_add a').on('click',function(event) {
         event.preventDefault();
         var type = $(this).parent().siblings('.song_type').text();
         var link = $(this).parent().siblings('.song_link').text();
-        add_music(type, link);
+        alert(type);
+	add_music(type, link);
         update_list();
     });
 
@@ -27,14 +24,14 @@ $(function() {
 function search_music(music_name) {
 
     $.ajax({
-        url: '/search?music_name=%s' + music_name,
+        url: 'search?music_name=' + music_name,
         type: 'get',
         dataType: 'json',
         async: false,
         success: function(musics) {
             $('.search-result tr:gt(0)').remove();
-            $.each(musics, function(key, music) {
-                $('.search-result').append(
+	    $.each(musics.musics, function(key, music) {
+		$('.search-result').append(
                     '<tr class="result-item" style="">'
                         +'<div class="song_type song_hidden">'+music.local+'</div>'
                         +'<div class="song_link song_hidden">'+music.link+'</div>'
@@ -56,7 +53,7 @@ function search_music(music_name) {
 function add_music(type, link) {
 
     $.ajax({
-        url: '/music',
+        url: 'music',
         type: 'put',
         dataType: 'json',
         data: {
@@ -74,13 +71,13 @@ function add_music(type, link) {
 function update_list(music_name) {
 
     $.ajax({
-        url: '/music_list',
+        url: 'music_list',
         type: 'get',
         dataType: 'json',
         async: false,
         success: function(musics) {
             $('.left-panel ul').remove();
-            $.each(musics, function(key, music) {
+            $.each(musics.musics, function(key, music) {
                 $('.left-panel').append(
                     +'<ul class="playing-item">'
                         +'<li>'+music.title+'</li>'

@@ -1,6 +1,7 @@
 $(function() {
 
     update_list();
+    $('#search-note').css('display','none');
 
     // 搜索框样式与回车搜索事件
     $('#fakebox-input').click(function(event) {
@@ -30,7 +31,7 @@ $(function() {
 function search_music(music_name) {
 
     $.ajax({
-        url: 'raspberry/search?music_name=' + music_name,
+        url: 'search?music_name=' + music_name,
         type: 'get',
         dataType: 'json',
         async: false,
@@ -86,7 +87,6 @@ function update_list(music_name) {
         dataType: 'json',
         async: false,
         success: function(musics) {
-            alert("ok");
             $('.left-panel ul').remove();
             $.each(musics.musics, function(key, music) {
                 $('.left-panel').append(

@@ -60,10 +60,11 @@ function search_music(music_name) {
 
 // 添加音乐
 function add_music(type, link) {
-        $.ajax({
+    $.ajax({
         url: 'music',
         type: 'post',
         dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         data: {
             "type": type,
             "link": link

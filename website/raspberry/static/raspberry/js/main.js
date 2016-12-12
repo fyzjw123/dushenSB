@@ -60,14 +60,16 @@ function search_music(music_name) {
 
 // 添加音乐
 function add_music(type, link) {
+    var json_data = JSON.stringify({
+        "type": type,
+        "link": link
+    });
+    alert(json_data)
     $.ajax({
         url: 'music',
         type: 'post',
         dataType: 'json',
-        data: JSON.stringify({
-            "type": type,
-            "link": link
-        }),
+        data: json_data,
         async: false,
         success: function(state) {
         },

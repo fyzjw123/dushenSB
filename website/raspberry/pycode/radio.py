@@ -17,6 +17,7 @@ class Radio:
 
 	def __init__(self):
 		self.play_queue=PlayQueue()
+		self.playing_music=None
 		for music in init_music:
 			link = os.path.join(MUSIC_DIR, music[0])
 			info = {
@@ -31,9 +32,8 @@ class Radio:
 
 	def __start_play(self):
 		while True:
-			url = self.play_queue.get_music_url()
-			print(url)
-			self.__play_music(url)
+			self.playing_music = self.play_queue.get_music()
+			self.__play_music(self.playing_music[0])
 
 	def __play_music(self, url):
 		p1 = subprocess.Popen("sudo ffmpeg -i %s -f wav pipe:" % url,
@@ -63,7 +63,10 @@ class Radio:
 		by user is true or false
 	'''
 	def get_music_list(self):
-		return self.play_queue.get_music_list()
+		music_list = self.play_queue.get_music_list()
+		if self.playing_music is not None:
+			music_list.insert(0, self.playing_music)
+		return music_list
 
 
 if __name__ == "__main__":

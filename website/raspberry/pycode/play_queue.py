@@ -39,16 +39,16 @@ class PlayQueue:
 	remove the music if it is added by the user and can only play once
 	!!!update self.insert_pos
 	'''
-	def get_music_url(self):
+	def get_music(self):
 		if self.head is None:	return None
-		url = self.head.url
+		music = self.head
 		if self.head.by_user:
 			if self.head==self.insert_pos:
 				self.insert_pos=None
 			self.__remove_music(self.head)
 		else:
 			self.head=self.head.next
-		return url
+		return [music.url, music.info, music.by_user]
 
 	def __remove_music(self, music):
 		if music.before==music.next:

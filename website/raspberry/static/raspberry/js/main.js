@@ -67,7 +67,7 @@ function add_music(type, link) {
     alert(json_data)
     $.ajax({
         url: 'music',
-        type: 'post',
+        type: 'put',
         dataType: 'json',
         contentType: 'application/json',
         data: json_data,

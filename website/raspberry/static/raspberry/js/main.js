@@ -20,9 +20,9 @@ $(function() {
     $(document).on("click", ".song_add a", function(event) {
         event.preventDefault();
         var link = $(this).attr('link');
-        var title = $(this).parent().parent().child('.song_title');
-        var singer = $(this).parent().parent().child('.song_singer');
-        var album = $(this).parent().parent().child('.song_album');
+        var title = $(this).parent().parent().children('.song_title').text();
+        var singer = $(this).parent().parent().children('.song_singer').text();
+        var album = $(this).parent().parent().children('.song_album').text();
         add_music(title, link, singer, album);
         update_list();
     });

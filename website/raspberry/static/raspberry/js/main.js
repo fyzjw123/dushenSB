@@ -64,7 +64,7 @@ function add_music(type, link) {
         url: 'music',
         type: 'post',
         dataType: 'json',
-        contentType: 'application/json; charset=UTF-8',
+        contentType: 'application/json',
         data: {
             "type": type,
             "link": link

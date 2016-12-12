@@ -83,4 +83,4 @@ class Core:
             music_obj['singer'] = music[1]['singer']
             music_obj['album'] = music[1]['album']
             music_list_obj['musics'].append(music_obj)
-        return music_list
+        return music_list_obj

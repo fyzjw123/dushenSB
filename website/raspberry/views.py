@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 from django.http import HttpResponseBadRequest
@@ -49,5 +50,12 @@ def get_music_list(request):
     if request.method == 'GET':
         music_list = Core.get_music_list()
         return JsonResponse(music_list)
+    else:
+        return HttpResponseBadRequest("RequestError")
+
+
+def get_main(request):
+    if request.method == 'GET':
+        return render(request, "raspberry/main.html", None)
     else:
         return HttpResponseBadRequest("RequestError")

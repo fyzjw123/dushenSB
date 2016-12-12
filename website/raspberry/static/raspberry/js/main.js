@@ -64,11 +64,10 @@ function add_music(type, link) {
         url: 'music',
         type: 'post',
         dataType: 'json',
-        contentType: 'application/json',
-        data: {
+        data: JSON.stringify({
             "type": type,
             "link": link
-        },
+        }),
         async: false,
         success: function(state) {
         },

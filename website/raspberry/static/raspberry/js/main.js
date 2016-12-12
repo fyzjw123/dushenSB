@@ -30,7 +30,7 @@ $(function() {
 function search_music(music_name) {
 
     $.ajax({
-        url: 'search?music_name=' + music_name,
+        url: 'raspberry/search?music_name=' + music_name,
         type: 'get',
         dataType: 'json',
         async: false,

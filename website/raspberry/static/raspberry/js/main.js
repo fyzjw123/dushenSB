@@ -20,7 +20,9 @@ $(function() {
     $(document).on("click", ".song_add a", function(event) {
         event.preventDefault();
         var link = $(this).attr('link');
-        //still should add title, singer and album!!!
+        var title = $(this).parent().parent().child('.song_title');
+        var singer = $(this).parent().parent().child('.song_singer');
+        var album = $(this).parent().parent().child('.song_album');
         add_music(title, link, singer, album);
         update_list();
     });

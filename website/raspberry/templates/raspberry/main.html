@@ -11,44 +11,6 @@
     <body>
         <div class="left-panel">
             <p class="playing-header">播放列表</p>
-            <ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul>
-            <ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul>
-            <ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul><ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul>
-            <ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul>
-            <ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul><ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul>
-            <ul class="playing-item">
-                <li>なんでもないや</li>
-                <li>RADWIMPS</li>
-                <li>君の名は</li>
-            </ul>
         </div>
 
         <div class="right-panel" >
@@ -56,36 +18,17 @@
                 <img src="FMradio.jpg" alt="FMradio" id="hplogo" title="FMradio">
             </div>
             <form action="/search" id="f" method="get">
-                <input id="fakebox-input" name="music_name">
+                <div id="fakebox" style="width: 663px;">
+                    <div id="fake-text">您想听点什么音乐呢</div>
+                    <input id="fakebox-input" name="music_name">
+                </div>
             </form>
-    
+            
+            <div id="search-note" style="text-align: center; display: none">
+                正在搜索曲目，请耐心等待。。。
+            </div>
+
             <table class="search-result" border="1" style="display:none">
-                <tr>
-                    <th>曲名</th>
-                    <th>歌手</th>
-                    <th>专辑</th>
-                    <th></th>
-                </tr>
-                <tr class="result-item" style="">
-                    <div class="song_type song_hidden">local</div>
-                    <div class="song_link song_hidden">link_path</div>
-                    <td class="song_title song_visible">なんでもないや (movie ver.)</td>
-                    <td class="song_singer song_visible">RADWIMPS</td>
-                    <td class="song_album song_visible">君の名は</td>
-                    <td>
-                        <a href="">添加</a>
-                    </td>
-                </tr>
-                <tr class="result-item" style="">
-                    <div class="song_type song_hidden">local</div>
-                    <div class="song_link song_hidden">link_path</div>
-                    <td class="song_title song_visible">なんでもないや (movie ver.)</td>
-                    <td class="song_singer song_visible">RADWIMPS</td>
-                    <td class="song_album song_visible">君の名は</td>
-                    <td>
-                        <a href="">添加</a>
-                    </td>
-                </tr>
             </table>
         </div>
 

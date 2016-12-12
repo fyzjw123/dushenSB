@@ -1,17 +1,18 @@
 
 .left-panel {
-  position: fixed;
+  position: absolute;
   width: 20%;
   height: 100%;
   left: 0;
   top: 0;
+  float:left;
   background: #f0f0f0;
   text-align: center;
 }
 
 .playing-header {
   margin-top: 20px;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 
 ul {
@@ -30,13 +31,17 @@ li {
 li {
   margin-right: 0;
 }
+li:nth-child(3), li:nth-child(2) {
+  text-align:right;
+  padding-right:10px;
+  font-size: 0.7em;
+}
 
 .right-panel {
-  position: fixed;
+  position: absolute;
   width: 80%;
-  height: 100%;
-  top: 0;
-  right: 0;
+  left: 20%;
+  float:left;
 }
 
 #lga {
@@ -112,6 +117,9 @@ form {
 
 .search-result {
 	margin: 30px auto;
+  text-align: center;
+  border: none;
+  width: 600px;
 }
 
 .song_hidden {

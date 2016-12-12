@@ -19,9 +19,9 @@ $(function() {
 
     $(document).on("click", ".song_add a", function(event) {
         event.preventDefault();
-        var type = $(this).attr('type');
-        var type = $(this).attr('link');
-        //add_music(type, link);
+        var type = $(this).attr('local');
+        var link = $(this).attr('link');
+        add_music(type, link);
         update_list();
     });
 
@@ -60,10 +60,9 @@ function search_music(music_name) {
 
 // 添加音乐
 function add_music(type, link) {
-
-    $.ajax({
+        $.ajax({
         url: 'music',
-        type: 'put',
+        type: 'post',
         dataType: 'json',
         data: {
             "type": type,

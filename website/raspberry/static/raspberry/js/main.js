@@ -19,9 +19,9 @@ $(function() {
 
     $(document).on("click", ".song_add a", function(event) {
         event.preventDefault();
-        var type = $(this).attr('local');
         var link = $(this).attr('link');
-        add_music(type, link);
+        //still should add title, singer and album!!!
+        add_music(title, link, singer, album);
         update_list();
     });
 
@@ -59,12 +59,14 @@ function search_music(music_name) {
 }
 
 // 添加音乐
-function add_music(type, link) {
+function add_music(title, link, singer, album) {
     var json_data = JSON.stringify({
-        "type": type,
-        "link": link
+        "type": "sogou",
+        "title": title,
+        "link": link,
+        "singer": singer,
+        "album": album
     });
-    alert(json_data)
     $.ajax({
         url: 'music',
         type: 'put',

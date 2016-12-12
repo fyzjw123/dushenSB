@@ -16,7 +16,7 @@ def music(request):
         return HttpResponse("OK: GET")
     elif request.method == 'PUT':
         music_json = json.loads(request.body.decode("utf-8"))
-        music_flag = Core.add_music(music_json)
+        music_flag = Core.add_music(music_json.link, music_json, True)
         if music_flag:
             info = {}
             info['type'] = music_json['type']

@@ -24,9 +24,8 @@ $(function() {
         var singer = $(this).parent().parent().children('.song_singer').text();
         var album = $(this).parent().parent().children('.song_album').text();
         add_music(title, link, singer, album);
-        update_list();
     });
-
+    setInterval('update_list()', 5000);
 });
 
 // 搜索音乐
@@ -77,6 +76,8 @@ function add_music(title, link, singer, album) {
         data: json_data,
         async: false,
         success: function(state) {
+            update_list();
+            alert("加歌成功");
         },
         error: function() {
             $('#search-note').css('display','block').text("抱歉，请求失败了。。。");
@@ -91,7 +92,7 @@ function update_list(music_name) {
         url: 'music_list',
         type: 'get',
         dataType: 'json',
-        async: false,
+        async: true,
         success: function(musics) {
             $('.left-panel ul').remove();
             $.each(musics.musics, function(key, music) {
@@ -105,7 +106,7 @@ function update_list(music_name) {
             });
         },
         error: function() {
-            alert("播放列表请求错误！");
+            //alert("播放列表请求错误！");
         }
     });
 }

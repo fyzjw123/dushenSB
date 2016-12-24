@@ -4,6 +4,7 @@
         <title>FM</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta charset="utf8">
+	{% load static %}
         <link rel="stylesheet" type="text/css" href="../../static/raspberry/css/main.css">
         <script type="text/javascript" src="../../static/raspberry/js/jQuery.min.js"></script>
         <script type="text/javascript" src="../../static/raspberry/js/main.js"></script>
@@ -15,7 +16,7 @@
 
         <div class="right-panel" >
             <div class="" id="lga">
-                <img src="FMradio.jpg" alt="FMradio" id="hplogo" title="FMradio">
+                <img src="../../static/raspberry/images/FMradio.jpg" alt="FMradio" id="hplogo" title="FMradio">
             </div>
             <form action="/search" id="f" method="get">
                 <div id="fakebox" style="width: 663px;">
